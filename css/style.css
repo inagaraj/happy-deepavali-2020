@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Digital';
+    src: url('./../fonts/digital-7.ttf');
+}
 :root {
     --small-bp: 640px;
     --large-bp: 840px;
@@ -199,7 +203,27 @@ body {
 }
 
 .wishing-text{
-    color:red;
+    color:#fff;
+    font-weight: normal;
+}
+#start{
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: 10px;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    cursor: pointer;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .btn svg{
     display: block;
@@ -327,5 +351,131 @@ body {
     .help-modal .help-modal__dialog {
         font-size: 1.25rem;
         max-width: 500px;
+    }
+}
+
+.begins
+{
+    color: #fff;
+    text-align: center;
+    font-size: 46px;
+    font-weight: normal;
+}
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: #000;
+    color:#fff;
+}
+.loaded #loader-wrapper {
+    visibility: hidden;
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+    -webkit-transition: all .3s 1s ease-out;
+    -o-transition: all .3s 1s ease-out;
+    transition: all .3s 1s ease-out;
+}
+#loader {
+    display: block;
+    position: relative;
+    top: calc(20%);
+    z-index: 1001;
+    text-align: center;
+}
+.loaded #loader {
+    opacity: 0;
+    -webkit-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.loaded #loader-wrapper .loader-section.section-left {
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-transition: all .7s .3s cubic-bezier(.645,.045,.355,1);
+    -o-transition: all .7s .3s cubic-bezier(.645,.045,.355,1);
+    transition: all .7s .3s cubic-bezier(.645,.045,.355,1);
+}
+#loader-wrapper .loader-section.section-left {
+    left: 0;
+}
+#loader-wrapper .loader-section {
+    position: fixed;
+    top: 0;
+    width: 51%;
+    height: 100%;
+    background: #000;
+    z-index: 1000;
+}
+#loader-wrapper .loader-section.section-right {
+    right: 0;
+}
+.loaded #loader-wrapper .loader-section.section-right {
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: all .7s .3s cubic-bezier(.645,.045,.355,1);
+    -o-transition: all .7s .3s cubic-bezier(.645,.045,.355,1);
+    transition: all .7s .3s cubic-bezier(.645,.045,.355,1);
+}
+.countdown-holder {
+    padding: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 2rem;
+    font-family: 'Digital', sans-serif;
+}
+
+.countdown-holder div {
+    background: #fff;
+    width: 8rem;
+    text-align: center;
+    border-radius: 0.7rem;
+    padding: 1.2rem 1.5rem;
+    -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25), 0 0.2rem 0.2rem rgba(0, 0, 0, 0.22);
+            box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.25), 0 0.2rem 0.2rem rgba(0, 0, 0, 0.22);
+    margin-bottom: 1.5rem;
+}
+
+.countdown-holder div:not(:last-child) {
+    margin-right: 1.5rem;
+
+}
+
+.countdown-holder h1 {
+    color: #000;
+    font-size: 60px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.countdown-holder span {
+    color: red;
+    font-size: 25px;
+}
+#launch_div,.info-div {
+    display:none;
+}
+.info-div
+{
+    border:1px solid #fff;
+}
+@media (max-width: 767px) {
+    .wishing-text{
+        font-size: 20px;
     }
 }
