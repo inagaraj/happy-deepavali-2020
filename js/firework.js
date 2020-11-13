@@ -299,11 +299,11 @@ const scaleFactorSelector = () => store.state.config.scaleFactor;
 // Help Content
 const helpContent = {
 	shellType: {
-		header: 'Shell Type',
+		header: 'Fancy Type',
 		body: 'The type of firework that will be launched. Select "Random" for a nice assortment!'
 	},
 	shellSize: {
-		header: 'Shell Size',
+		header: 'Cracker Size',
 		body: 'The size of the fireworks. Modeled after real firework shell sizes, larger shells have bigger bursts with more stars, and sometimes more complex effects. However, larger shells also require more processing power and may cause lag.'
 	},
 	quality: {
@@ -752,7 +752,7 @@ const horsetailShell = (size=1) => {
 };
 
 function randomShellName() {
-	return Math.random() < 0.5 ? 'Crysanthemum' : shellNames[(Math.random() * (shellNames.length - 1) + 1) | 0 ];
+	return Math.random() < 0.5 ? 'Thunder Popcorn' : shellNames[(Math.random() * (shellNames.length - 1) + 1) | 0 ];
 }
 
 function randomShell(size) {
@@ -769,7 +769,7 @@ function shellFromConfig(size) {
 // Get a random shell, not including processing intensive varients
 // Note this is only random when "Random" shell is selected in config.
 // Also, this does not create the shell, only returns the factory function.
-const fastShellBlacklist = ['Falling Leaves', 'Floral', 'Willow'];
+const fastShellBlacklist = ['Golden Twinkle', 'Flower Power', 'Crackling Star'];
 function randomFastShell() {
 	const isRandom = shellNameSelector() === 'Random';
 	let shellName = isRandom ? randomShellName() : shellNameSelector();
@@ -784,17 +784,17 @@ function randomFastShell() {
 
 const shellTypes = {
 	'Random': randomShell,
-	'Crackle': crackleShell,
-	'Crossette': crossetteShell,
-	'Crysanthemum': crysanthemumShell,
-	'Falling Leaves': fallingLeavesShell,
-	'Floral': floralShell,
+	'Crackling Yellow': crackleShell,
+	'Sparkling Thunder': crossetteShell,
+	'Thunder Popcorn': crysanthemumShell,
+	'Golden Twinkle': fallingLeavesShell,
+	'Flower Power': floralShell,
 	'Ghost': ghostShell,
 	'Horse Tail': horsetailShell,
 	'Palm': palmShell,
-	'Ring': ringShell,
+	'Sky Wheel': ringShell,
 	'Strobe': strobeShell,
-	'Willow': willowShell
+	'Crackling Star': willowShell
 };
 
 const shellNames = Object.keys(shellTypes);
@@ -2293,7 +2293,7 @@ if (IS_HEADER) {
 	init();
 } else {
 	// Allow status to render, then preload assets and start app.
-	setLoadingStatus('Lighting Fuses');
+	setLoadingStatus('Lighting Starts');
 	setTimeout(() => {
 		soundManager.preload()
 		.then(
