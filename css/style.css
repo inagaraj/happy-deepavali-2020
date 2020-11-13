@@ -474,6 +474,9 @@ body {
 {
     border:1px solid #fff;
 }
+.happy-diwali{
+    color:#00bfff;
+}
 @media (max-width: 767px) {
     .wishing-text{
         font-size: 20px;
