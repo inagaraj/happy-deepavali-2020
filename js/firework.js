@@ -2288,22 +2288,49 @@ function setLoadingStatus(status) {
 	document.querySelector('.loading-init__status').textContent = status;
 }
 
-// CodePen profile header doesn't need audio, just initialize.
-if (IS_HEADER) {
-	init();
-} else {
-	// Allow status to render, then preload assets and start app.
-	setLoadingStatus('Lighting Starts');
-	setTimeout(() => {
-		soundManager.preload()
-		.then(
-			init,
-			reason => {
-				// Codepen preview doesn't like to load the audio, so just init to fix the preview for now.
+$(document).ready(function () {
+    var launchDate = new Date();
+    launchDate.setSeconds( launchDate.getSeconds() + 7 );
+    launchDate = launchDate.getTime();
+    var distance = setInterval(function () {
+        var now = new Date().getTime();
+        var difference = launchDate - now;
+        var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        $("#seconds").html(("0" + seconds).slice(-2));
+        if (difference < 0) {
+            clearInterval(distance);
+			$(".counter_div").hide();
+			$("#launch_div").fadeIn();
+        }
+	}, 1000);
+	$("#start").click(function(){
+		$(".wishes_div").fadeOut();
+		$(".info-div").fadeIn();
+		setTimeout(function(){ 
+			$("body").addClass("loaded");
+			// CodePen profile header doesn't need audio, just initialize.
+			if (IS_HEADER) {
 				init();
-				// setLoadingStatus('Error Loading Audio');
-				return Promise.reject(reason);
+			} else {
+				// Allow status to render, then preload assets and start app.
+				setLoadingStatus('Lighting Starts');
+				setTimeout(() => {
+					soundManager.preload()
+					.then(
+						init,
+						reason => {
+							// Codepen preview doesn't like to load the audio, so just init to fix the preview for now.
+							init();
+							// setLoadingStatus('Error Loading Audio');
+							return Promise.reject(reason);
+						}
+					);
+				}, 0);
 			}
-		);
-	}, 0);
-}
+		}, 4000);
+	});
+});
+
